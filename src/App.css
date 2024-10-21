@@ -1,0 +1,14 @@
+
+  .rotateImg  {
+    animation: spin 2s linear infinite; /* Rotate the image continuously for 2 seconds using the 'spin' animation */
+    transform-origin: center center; /* Set the center point of the rotation to the center of the image */
+  }
+  
+  @keyframes spin {
+    from {
+      transform:  rotate(0deg); /* Starting position of the image */
+    }
+    to {
+      transform:  rotate(-360deg); /* Ending position of the image (one full rotation) */
+    }
+  }

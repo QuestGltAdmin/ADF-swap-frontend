@@ -1,0 +1,456 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row, Form, InputGroup } from "react-bootstrap-v5";
+import { ToastContainer } from "react-toastify";
+import { axiosSimpleSwap } from "../http/axios/axios_main";
+import NewSwapModalSingleMainnet from "../Component/ui/NewSwapModalSingleMainnet";
+import { useNavigate } from "react-router-dom";
+
+export const NewSingleChainSwapMainnet = () => {
+  const [fromTokenAmount, setFromTokenAmount] = useState(0);
+  const [toTokenAmount, setToTokenAmount] = useState(0);
+  const [tokenList, setTokenList] = useState([]);
+  const [walletAddress, setWalletAddress] = useState("");
+  const [memoData, setMemoData] = useState("");
+  const [tokens, setTokens] = useState({ from: {}, to: {} });
+  const [walletAddressDeCheck, setWalletAddressDeCheck] = useState(false);
+  const [memoDataDeCheck, setMemoDataDeCheck] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState({
+    show: false,
+    isFrom: false,
+  });
+  const [exchangeErrorMessage, setExchangeErrorMessage] = useState("");
+  const [postExchangeErrorMessage, setPostExchangeErrorMessage] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchTokenList();
+  }, []);
+
+  useEffect(() => {
+    // Initial fetch if dependencies are set
+    if (fromTokenAmount && tokens.from && tokens.to) {
+      fetchEstimatedExchange();
+    }
+
+    const intervalId = setInterval(() => {
+      if (fromTokenAmount && tokens.from && tokens.to) {
+        fetchEstimatedExchange();
+      }
+    }, 5000);
+
+    // Cleanup function to clear the interval
+    return () => clearInterval(intervalId);
+  }, [fromTokenAmount, tokens.from, tokens.to]);
+
+  const fetchTokenList = async () => {
+    try {
+      const { data } = await axiosSimpleSwap.get(
+        `/get_all_currencies?api_key=${process.env.REACT_APP_SINGLE_SWAP_API_KEY}`
+      );
+      if (data?.length) {
+        const filterData = data.filter(
+          (item) => !item.isFiat && item.validation_address !== null
+        );
+
+        if (filterData?.length) {
+          setTokenList(filterData);
+          setTokens((prevState) => ({
+            ...prevState,
+            from:
+              filterData.find((item) => item.symbol === "bnb-bsc") ||
+              filterData[0],
+          }));
+
+          if (filterData.length > 1) {
+            setTokens((prevState) => ({
+              ...prevState,
+              to:
+                filterData.find((item) => item.symbol === "usdtbep20") ||
+                filterData[1],
+            }));
+          }
+        }
+      }
+    } catch (error) {
+      console.log("Something went wrong with fetch token list api");
+    }
+  };
+
+  const fetchEstimatedExchange = async () => {
+    const params = `fixed=${true}&api_key=${
+      process.env.REACT_APP_SINGLE_SWAP_API_KEY
+    }&currency_from=${tokens.from.symbol}&currency_to=${
+      tokens.to.symbol
+    }&amount=${fromTokenAmount}`;
+    try {
+      const { data } = await axiosSimpleSwap.get(`/get_estimated?${params}`);
+      if (data) {
+        setToTokenAmount(data);
+      }
+      setExchangeErrorMessage("");
+    } catch (error) {
+      setToTokenAmount(0);
+
+      const { response } = error;
+      if (response?.data?.description) {
+        setExchangeErrorMessage(response.data.description);
+      }
+    }
+  };
+
+  const createExchange = async () => {
+    const params = `api_key=${process.env.REACT_APP_SINGLE_SWAP_API_KEY}`;
+    const body = {
+      fixed: true,
+      currency_from: tokens.from.symbol,
+      currency_to: tokens.to.symbol,
+      amount: fromTokenAmount,
+      address_to: walletAddress,
+      extra_id_to: memoData,
+      user_refund_address: "",
+      user_refund_extra_id: "",
+    };
+
+    try {
+      const { data } = await axiosSimpleSwap.post(
+        `/create_exchange?${params}`,
+        body
+      );
+      if (data?.id) {
+        setToTokenAmount(0);
+        setFromTokenAmount(0);
+        setWalletAddress("");
+        navigate(`/exchange?id=${data.id}`);
+      }
+      setPostExchangeErrorMessage("");
+    } catch (error) {
+      const { response } = error;
+      if (response?.data?.error) {
+        setPostExchangeErrorMessage(response.data.error);
+      }
+      if (response?.data?.description) {
+        setPostExchangeErrorMessage(response.data.description);
+      }
+    }
+  };
+
+  const handleAmount = async (e) => {
+    let value = e.target.value;
+    if (value < 0) {
+      value = 0;
+    }
+    setFromTokenAmount(value);
+  };
+
+  const swap = (e) => {
+    e.preventDefault();
+    setTokens((prevState) => {
+      return { from: prevState.to, to: prevState.from };
+    });
+  };
+
+  useEffect(() => {
+    checkValidWallet();
+  }, [tokens.to]);
+
+  const checkValidWallet = () => {
+    let regex = new RegExp(tokens.to?.validation_address);
+    const isCheck = regex.test(walletAddress);
+    if (isCheck) {
+      setWalletAddressDeCheck(true);
+    } else {
+      setWalletAddressDeCheck(false);
+    }
+    return isCheck;
+  };
+
+  const checkValidMemo = () => {
+    let regex = new RegExp(tokens.to?.validation_extra);
+    const isCheck = regex.test(memoData);
+    if (isCheck) {
+      setMemoDataDeCheck(true);
+    } else {
+      setMemoDataDeCheck(false);
+    }
+    return isCheck;
+  };
+
+  const handleExchange = () => {
+    if (!tokens.from) {
+      setPostExchangeErrorMessage("Please select From token");
+    } else if (!tokens.to) {
+      setPostExchangeErrorMessage("Please select To token");
+    } else if (!fromTokenAmount) {
+      setPostExchangeErrorMessage("Please enter From token amount");
+    } else if (!walletAddress) {
+      setPostExchangeErrorMessage("Please enter wallet address");
+    } else {
+      const isValidWallet = checkValidWallet();
+      if (isValidWallet) {
+        if (tokens.to?.extra_id) {
+          const isValidMemo = checkValidMemo();
+
+          if (isValidMemo) {
+            createExchange();
+          } else {
+            setPostExchangeErrorMessage(
+              `Please enter valid ${tokens.to?.extra_id}`
+            );
+          }
+        } else {
+          createExchange();
+        }
+      } else {
+        setPostExchangeErrorMessage("Please enter valid wallet address");
+      }
+    }
+  };
+
+  const handleToken = (token) => {
+    if (showSearchModal.isFrom) {
+      setTokens((prevState) => ({ ...prevState, from: token }));
+    } else {
+      setTokens((prevState) => ({ ...prevState, to: token }));
+    }
+    setShowSearchModal((prevState) => ({ ...prevState, show: false }));
+  };
+
+  return (
+    <>
+      <section className="">
+        <ToastContainer />
+        <Container>
+          <Row>
+            <Col lg={6} className="m-auto">
+              <div className="cross-swap-inner">
+                <div className="first-row">
+                  <div className="cross-chain-row">
+                    <div>
+                      <h3>Swap</h3>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="select-one-row">
+                  <div>
+                    <button
+                      className="select-btn"
+                      onClick={() =>
+                        setShowSearchModal((prevState) => ({
+                          show: true,
+                          isFrom: true,
+                        }))
+                      }
+                    >
+                      {tokens.from ? (
+                        <>
+                          <img
+                            className="eth-icon"
+                            src={tokens.from.image || "assets/img/star.png"}
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src = "assets/img/star.png";
+                            }}
+                          />
+                          {tokens.from.symbol?.toUpperCase()}
+                        </>
+                      ) : (
+                        "Select From Token"
+                      )}
+                      <img className="down-arrow" src="assets/img/down.png" />
+                    </button>
+                  </div>
+                  <div>
+                    <div>
+                      <h5>
+                        <Form.Control
+                          type="number"
+                          onChange={handleAmount}
+                          min={0}
+                          placeholder="0.00"
+                          value={fromTokenAmount}
+                        />
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="swap-btn add-ico">
+                  <a onClick={swap}>
+                    <img src="assets/img/swithcer.svg" />
+                  </a>
+                </div>
+
+                <div className="select-one-row">
+                  <button
+                    className="select-btn"
+                    onClick={() =>
+                      setShowSearchModal((prevState) => ({
+                        show: true,
+                        isFrom: false,
+                      }))
+                    }
+                  >
+                    {tokens.to ? (
+                      <>
+                        <img
+                          className="eth-icon"
+                          src={tokens.to.image || "assets/img/star.png"}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src = "assets/img/star.png";
+                          }}
+                        />
+                        {tokens.to.symbol?.toUpperCase()}
+                      </>
+                    ) : (
+                      "Select From Token"
+                    )}
+                    <img className="down-arrow" src="assets/img/down.png" />
+                  </button>
+                  <div className="afterexch">
+                    {exchangeErrorMessage ? (
+                      <p className="error-msg">{exchangeErrorMessage}</p>
+                    ) : (
+                      <>
+                        {toTokenAmount ? (
+                          <h5>
+                            <Form.Control
+                              readOnly
+                              type="text"
+                              value={toTokenAmount.toLocaleString(undefined, {
+                                minimumFractionDigits: 8,
+                              })}
+                            />
+                          </h5>
+                        ) : (
+                          <h5>{fromTokenAmount ? "..." : ""}</h5>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div className="wallet-address-box">
+                  <p>Wallet Address to Receive Token</p>
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      placeholder="Enter or Paste Address"
+                      onChange={(e) => {
+                        setWalletAddress(e.target.value);
+                      }}
+                      value={walletAddress}
+                      onKeyUp={() => {
+                        checkValidWallet();
+                      }}
+                    />
+                    {walletAddress.length > 0 ? (
+                      <InputGroup.Text>
+                        {walletAddressDeCheck ? (
+                          <img src="assets/img/insurance.png" />
+                        ) : (
+                          <img src="assets/img/warning.png" />
+                        )}
+                      </InputGroup.Text>
+                    ) : (
+                      <></>
+                    )}
+                    {walletAddress.length > 0 ? (
+                      <InputGroup.Text>
+                        <img
+                          src="assets/img/x.png"
+                          onClick={() => {
+                            setWalletAddress("");
+                          }}
+                        />
+                      </InputGroup.Text>
+                    ) : (
+                      ""
+                    )}
+                  </InputGroup>
+                </div>
+
+                {tokens.to?.has_extra_id && tokens.to?.extra_id && (
+                  <div className="wallet-address-box">
+                    <p>{tokens.to.extra_id}</p>
+                    <InputGroup className="mb-3">
+                      <Form.Control
+                        placeholder="Enter your data"
+                        onChange={(e) => {
+                          setMemoData(e.target.value);
+                        }}
+                        value={memoData}
+                        onKeyUp={() => {
+                          checkValidMemo();
+                        }}
+                      />
+                      {memoData.length > 0 ? (
+                        <InputGroup.Text>
+                          {memoDataDeCheck ? (
+                            <img src="assets/img/insurance.png" />
+                          ) : (
+                            <img src="assets/img/warning.png" />
+                          )}
+                        </InputGroup.Text>
+                      ) : (
+                        <></>
+                      )}
+                      {memoData.length > 0 ? (
+                        <InputGroup.Text>
+                          <img
+                            src="assets/img/x.png"
+                            onClick={() => {
+                              setMemoData("");
+                            }}
+                          />
+                        </InputGroup.Text>
+                      ) : (
+                        ""
+                      )}
+                    </InputGroup>
+                  </div>
+                )}
+
+                <div>
+                  {postExchangeErrorMessage ? (
+                    <p className="error-msg">{postExchangeErrorMessage}</p>
+                  ) : (
+                    <></>
+                  )}
+                  <button
+                    className="common-btn connect-btn"
+                    onClick={handleExchange}
+                  >
+                    Exchange
+                  </button>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {showSearchModal.show && (
+        <NewSwapModalSingleMainnet
+          modalProps={{
+            show: showSearchModal.show,
+            onHide: () =>
+              setShowSearchModal((prevState) => ({
+                ...prevState,
+                show: false,
+              })),
+          }}
+          tokenList={
+            showSearchModal.isFrom
+              ? tokenList.filter((token) => token.symbol !== tokens.to.symbol)
+              : tokenList.filter((token) => token.symbol !== tokens.from.symbol)
+          }
+          handleToken={handleToken}
+        />
+      )}
+    </>
+  );
+};

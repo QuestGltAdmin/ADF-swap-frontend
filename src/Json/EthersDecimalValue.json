@@ -1,0 +1,32 @@
+{
+    "Decimal": [
+      {
+        "decimal": 18,
+        "decimalName": "ether"
+      },
+      {
+        "decimal": 15,
+        "decimalName": "finney"
+      },      
+      {
+        "decimal": 12,
+        "decimalName": "szabo"
+      },      
+      {
+        "decimal": 9,
+        "decimalName": "gwei"
+      },      
+      {
+        "decimal": 6,
+        "decimalName": "mwei"
+      },      
+      {
+        "decimal": 3,
+        "decimalName": "kwei"
+      },      
+      {
+        "decimal": 0,
+        "decimalName": "wei"
+      }
+    ]
+  }
