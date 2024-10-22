@@ -1,5 +1,5 @@
 body {
-    background-color: #212121;
+    background-color: #000;
 }
 .login-header-home {
     position: relative;
@@ -19,9 +19,9 @@ a, button {
     text-decoration: none !important;
 }
 .border-btn {
-    border: 2px solid #4C1368 !important;
+    border: 2px solid #E07A00 !important;
     background-color: #fff !important;
-    color: #4C1368 !important;
+    color: #E07A00 !important;
     padding: 5px 15px;
     margin: 10px;
     border-radius: 6px;
@@ -29,8 +29,8 @@ a, button {
     font-weight: 600;
 }
 /* .common-btn {
-    border: 2px solid #4C1368 !important;
-    background-color: #4C1368 !important;
+    border: 2px solid #E07A00 !important;
+    background-color: #E07A00 !important;
     color: #fff !important;
     padding: 5px 15px;
     margin: 10px;
@@ -86,7 +86,7 @@ a, button {
     color: #000;
 }
 .outer-bg-signup .form-control, .outer-bg-signup .form-select {
-    border:1px solid #D173FF!important;
+    border:1px solid #E07A00!important;
     box-shadow: none !important;
     padding: 10px 15px;
     border-radius: 8px;
@@ -98,7 +98,7 @@ a, button {
     color: #FFFFFF!important;
 }
 .outer-bg-signup .form-select option {
-    background-color: #4C1368 !important;
+    background-color: #E07A00 !important;
 }
 
 .outer-bg-signup .form-control::placeholder{
@@ -106,7 +106,7 @@ a, button {
     font-weight: 300;
 }
 .outer-bg-signup .input-group {
-    border: 1px solid #D173FF !important;
+    border: 1px solid #E07A00 !important;
     border-radius: 8px;
 }
 .outer-bg-signup .input-group .form-control{
@@ -114,7 +114,7 @@ a, button {
 }
 .outer-bg-signup .input-group .input-group-text {
     background-color: transparent !important;
-    color: #D173FF;
+    color: #E07A00;
     border: none !important;
 }
 .outer-bg-signup .mb-3 {
@@ -130,7 +130,7 @@ a, button {
 font-weight: 400;
 }
 .outer-forgot-pass-link a.forgot-link{
-    color: #4C1368;
+    color: #E07A00;
     font-size: 16px;
 }
 .outer-forgot-pass-link .dont-have-acc{
@@ -140,7 +140,7 @@ font-size: 14px;
     color: #000;
 }
 .outer-forgot-pass-link .dont-have-acc a {
-    color: #4C1368;
+    color: #E07A00;
     font-size: 16px;
 }
 .outer-bg-signup .common-btn1{
@@ -151,7 +151,7 @@ font-size: 14px;
     justify-content: space-between;
 }
 .outer-bg-signup .otp_box input {
-    border: 1px solid #4C1368 !important;
+    border: 1px solid #E07A00 !important;
     box-shadow: none !important;
     padding: 16px;
     border-radius: 8px;
@@ -187,7 +187,7 @@ font-size: 14px;
         padding-top: 60px;
     }
     .outer-bg-signup {
-        /* box-shadow: 2px 2px 10px #4C1368; */
+        /* box-shadow: 2px 2px 10px #E07A00; */
     }
     .outer-bg-signup h3 {
         font-size: 20px;
@@ -266,7 +266,7 @@ height: 50px;
     left: 0;
     width: 300px;
     top: 75px;
-    background-color: #4C1368;
+    background-color: #E07A00;
     height: calc(100vh - 75px) !important;
     align-items: flex-start;
     display: block;
@@ -388,7 +388,7 @@ height: 50px;
     padding: 13px 12px;
 }
 .dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link.active {
-    background: #4C1368;
+    background: #E07A00;
     box-shadow: 4px 4px 32px rgba(103, 90, 255, 0.07);
     border-radius: 10px;
     color: #fff;
@@ -406,7 +406,7 @@ height: 50px;
     display: none;
 }
 .dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link:hover {
-    background: #4C1368;
+    background: #E07A00;
     box-shadow: 4px 4px 32px rgba(103, 90, 255, 0.07);
     border-radius: 10px;
     color: #fff;
@@ -440,7 +440,7 @@ height: 50px;
     align-items: center;
 }
 .btc-icon {
-    background: #4C1368;
+    background: #E07A00;
     border-radius: 10px;
     padding: 10px;
     margin-right: 10px;
@@ -512,7 +512,7 @@ height: 50px;
     margin-bottom: 40px;
     /* font-size: 20px;
     font-weight: 700;
-    color: #4C1368; */
+    color: #E07A00; */
     margin-top: 10px;
     position: relative;
     font-style: normal;
@@ -528,7 +528,7 @@ height: 50px;
     height: 2px;
     width: 100%;
     left: 0;
-    background-color: #4C1368;
+    background-color: #E07A00;
 }
 .shadow-box-main {
     margin: 15px 0;
@@ -564,7 +564,7 @@ height: 50px;
     margin-bottom: 0;
 }
 .balance-icon {
-    background: #4C1368;
+    background: #E07A00;
     border-radius: 10px;
     padding: 8px 15px;
 }
@@ -607,7 +607,7 @@ height: 50px;
     margin-bottom: 15px;
 }
 .coin-content .coin-circle {
-    background: #4C1368;
+    background: #E07A00;
     margin-right: 24px;
     width: 24px;
     height: 24px;
@@ -649,7 +649,7 @@ height: 50px;
     font-size: 12px;
     line-height: 15px;
     text-align: center;
-    color: #D173FF;
+    color: #E07A00;
 }
 .history-box {
     padding: 37px 41px 20px 30px;
@@ -803,11 +803,11 @@ height: 50px;
     padding: 2px 15px;
 }
 .d-select ul li a.active {
-    background: #4C1368;
+    background: #E07A00;
     color: #E4E4E4;
 }
 .d-select ul li a:hover {
-    background: #4C1368;
+    background: #E07A00;
     color: #E4E4E4;
 }
 /*** Transaction***/
@@ -834,7 +834,7 @@ height: 50px;
     margin: 5px;
 }
 .transaction-table select {
-    border: 1px solid #D173FF;
+    border: 1px solid #E07A00;
     border-radius: 8px;
     padding: 10px 50px 10px 16px;
     background: transparent;
@@ -858,7 +858,7 @@ height: 50px;
 .transaction-table select:focus {
     outline: 0;
     box-shadow: unset;
-    border-color: #D173FF;
+    border-color: #E07A00;
 }
 .clear-fliter {
     font-style: normal;
@@ -868,7 +868,7 @@ height: 50px;
     letter-spacing: 1px;
     color: #FFFFFF;
     padding: 10px 34px;
-    background: #4C1368;
+    background: #E07A00;
     border-radius: 20px;
     margin-right: 16px;
 }
@@ -876,7 +876,7 @@ height: 50px;
     color: #fff;
 }
 .search {
-    border: 1px solid #D173FF;
+    border: 1px solid #E07A00;
     border-radius: 20px;
     padding: 8px 16px;
     font-style: normal;
@@ -887,11 +887,11 @@ height: 50px;
     color: #FFFFFF;
 }
 .search:hover {
-    color: #D173FF;
+    color: #E07A00;
 }
 .search i {
     margin-left: 16px;
-    color: #D173FF;
+    color: #E07A00;
 }
 .transaction-table .outer-show-table {
     margin-bottom: 32px;
@@ -971,13 +971,13 @@ height: 50px;
     color: #E14C4C;
 }
 .pending {
-    color: #D173FF;
-    background: #4C1368;
+    color: #E07A00;
+    background: #E07A00;
     border-radius: 2px;
     padding: 2px;
 }
 .pending:hover {
-    color: #D173FF;
+    color: #E07A00;
 }
 .table-responsive {
     margin-bottom: 27px;
@@ -986,7 +986,7 @@ height: 50px;
     margin-bottom: 0;
 }
 .transaction-table .first.page-item .page-link {
-    background: #4C1368;
+    background: #E07A00;
 }
 .transaction-table .page-item .page-link {
     padding: 16px 18px;
@@ -1022,7 +1022,7 @@ height: 50px;
     padding: 0;
 }
 .referral-input.outer-bg-signup .input-group {
-    border: 1px solid #D173FF!important;
+    border: 1px solid #E07A00!important;
 }
 .referral-input.outer-bg-signup .input-group .input-group-text {
     color: #fff;
@@ -1030,7 +1030,7 @@ height: 50px;
     padding-left: 20px;
 }
 .referral-input.outer-bg-signup .input-group .form-control {
-    /* border: 1px solid #D173FF!important; */
+    /* border: 1px solid #E07A00!important; */
     border-radius: 8px;
     background: transparent;
     font-style: normal;
@@ -1082,7 +1082,7 @@ height: 50px;
 }
 
 .table-box-new tr th {
-    background-color: #4C1368;
+    background-color: #E07A00;
     color: #fff;
     font-weight: 500;
     font-size: 14px;
@@ -1105,7 +1105,7 @@ height: 50px;
     padding: 0;
 }
 .referral-input.outer-bg-signup .input-group {
-    border: 1px solid #D173FF!important;
+    border: 1px solid #E07A00!important;
 }
 .referral-input.outer-bg-signup .input-group .input-group-text {
     color: #fff;
@@ -1113,7 +1113,7 @@ height: 50px;
     padding-left: 20px;
 }
 .referral-input.outer-bg-signup .input-group .form-control {
-    /* / border: 1px solid #D173FF!important; / */
+    /* / border: 1px solid #E07A00!important; / */
     border-radius: 8px;
     background: transparent;
     font-style: normal;
@@ -1167,7 +1167,7 @@ height: 50px;
     box-shadow: none !important;
     outline: none !important;
     padding: 0 10px;
-    border: 1px solid #4C1368;
+    border: 1px solid #E07A00;
 } */
 
 .outer-show-table .pagination{
@@ -1177,14 +1177,14 @@ margin: 0;
 
 }
 /* .outer-show-table .pagination .page-item .page-link {
-    border: 1px solid #4C1368;
+    border: 1px solid #E07A00;
     padding: 0px 8px;
     height: 36px;
     width: 36px;
     font-size: 14px;
     line-height: 34px;
     font-weight: 600;
-    color: #4C1368;
+    color: #E07A00;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1194,7 +1194,7 @@ margin: 0;
 .outer-show-table .pagination .page-item:hover .page-link,
 .outer-show-table .pagination .page-item:focus .page-link {
     
-    background-color: #4C1368;
+    background-color: #E07A00;
     color: #fff !important;
 }
 .outer-show-table .pagination .page-item .page-link span{
@@ -1212,7 +1212,7 @@ margin: 0;
     color: #000;
 }
 /* .dashboard-layout .form-control, .dashboard-layout .form-select {
-    border: 1px solid #4C1368 !important;
+    border: 1px solid #E07A00 !important;
     box-shadow: none !important;
     padding: 10px 15px;
     border-radius: 8px;
@@ -1220,7 +1220,7 @@ margin: 0;
     background-color: transparent !important;
 } */
 /* .dashboard-layout .form-select option {
-    background-color: #4C1368 !important;
+    background-color: #E07A00 !important;
 }
 
 .dashboard-layout .form-control::placeholder{
@@ -1228,7 +1228,7 @@ margin: 0;
     font-weight: 300;
 } */
 .dashboard-layout .input-group {
-    /* border: 1px solid #4C1368 !important; */
+    /* border: 1px solid #E07A00 !important; */
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -1236,7 +1236,7 @@ margin: 0;
 }
 /* .dashboard-layout .input-group .input-group-text {
     background-color: transparent !important;
-    color: #4C1368;
+    color: #E07A00;
     border: none !important;
 } */
 .profile-pic {
@@ -1290,7 +1290,7 @@ margin: 0;
       margin-bottom: 50px;
       font-size: 20px;
       font-weight: 700;
-      color: #4C1368;
+      color: #E07A00;
       position: relative;
   }
   .chart-box h3::after {
@@ -1300,7 +1300,7 @@ margin: 0;
       height: 2px;
       width: 100%;
       left: 0;
-      background-color: #4C1368;
+      background-color: #E07A00;
   }
   @media (max-width:1400px){
     .clear-fliter{

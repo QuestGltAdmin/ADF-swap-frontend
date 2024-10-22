@@ -20,7 +20,7 @@
     height: 46px;
 }
 .purple-common-btn{
-    background: linear-gradient(180deg, #4C1368 -9.38%, #D173FF 125%);
+    background: linear-gradient(180deg, #E07A00 -9.38%, #E07A00 125%);
     box-shadow: 4px 4px 32px rgba(103, 90, 255, 0.07);
     border-radius: 10px;
     padding: 15px 40px;
@@ -45,13 +45,13 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
-    border: 1px solid #D173FF;
+    border: 1px solid #E07A00;
     background-color: transparent;
     color: #FFFFFF;
 }
 .purple-btn-border:hover{
     background-color: transparent;
-    border:  1px solid #D173FF;
+    border:  1px solid #E07A00;
 }
 .home-header-new .purple-common-btn{
     margin-left: 8px;
@@ -146,7 +146,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background: linear-gradient(180deg, #4C1368 -9.38%, #D173FF 125%);
+    background: linear-gradient(180deg, #E07A00 -9.38%, #E07A00 125%);
 }
 .home-bottom-border.center{
     margin: auto;
@@ -201,9 +201,9 @@
     color: #FFFFFF;
 }
 .describe-box{
-    /* border: 1px solid #4C1368; */
-    background: linear-gradient(180deg, #4C1368, #D173FF);
-    /* border-image: linear-gradient(180deg, #4C1368, #D173FF) 1;   */
+    /* border: 1px solid #E07A00; */
+    background: linear-gradient(180deg, #E07A00, #E07A00);
+    /* border-image: linear-gradient(180deg, #E07A00, #E07A00) 1;   */
     border-radius: 20px;
     margin-top:20px;
     padding: 1px;
@@ -253,10 +253,10 @@
     color: #FFFFFF;
 }
 .slick-next:before, .slick-prev:before{
-    color:#D173FF !important;
+    color:#E07A00 !important;
 }
 .describe-box .read-more a{
-    background: linear-gradient(180deg, #4C1368 -9.38%, #D173FF 125%);
+    background: linear-gradient(180deg, #E07A00 -9.38%, #E07A00 125%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -314,7 +314,7 @@
     color: #FFFFFF;
 }
 .frequent-sec .frequent-ask-inner .accordion-item .accordion-body{
-    border-top:1px solid #4C1368;
+    border-top:1px solid #E07A00;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
