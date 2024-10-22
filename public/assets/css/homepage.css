@@ -1,5 +1,5 @@
 .home-header-new {
-    padding: 15px 0;
+    padding: 0;
     position: fixed;
     top: 0;
     z-index: 10;
@@ -16,8 +16,8 @@
     color: #FFFFFF !important;
     margin: 0 8px;
 }
-.home-header-new .navbar-brand img,#home-footer .footer-content .logo-img{
-    height: 46px;
+.home-header-new .navbar-brand img, #home-footer .footer-content .logo-img {
+    height: 60px;
 }
 .purple-common-btn{
     background: linear-gradient(180deg, #E07A00 -9.38%, #E07A00 125%);
@@ -71,6 +71,7 @@
 }
 #home-footer .footer-box1 ul li {
     padding: 10px 0;
+    list-style: none;
 }
 #home-footer .footer-content p{
     margin: 20px 0;

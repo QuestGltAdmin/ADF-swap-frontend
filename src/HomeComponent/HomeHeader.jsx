@@ -18,7 +18,7 @@ export default function HomeHeader() {
                 
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                   <Nav className="">
-                    <Nav.Link href="https://adfswap.io">Home</Nav.Link>
+                    {/* <Nav.Link href="https://adfswap.io">Home</Nav.Link> */}
                     <Nav.Link href="/">Swap</Nav.Link>
                     <Nav.Link href="/privacy">Privacy Policy</Nav.Link>
                     <Nav.Link href="/terms">Terms & Condition</Nav.Link>
