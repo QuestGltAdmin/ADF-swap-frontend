@@ -92,7 +92,7 @@ export default function HomeFooter() {
               <h5>Quick Links</h5>
               <ul>
                 <li>
-                  <Nav.Link href="/swap-simple">Swap</Nav.Link>
+                  <Nav.Link href="/">Swap</Nav.Link>
 
                 </li>
                 <li>

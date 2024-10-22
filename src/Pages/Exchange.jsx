@@ -231,7 +231,7 @@ export const Exchange = () => {
                         width: "60%",
                         margin: "40px auto 0px",
                       }}
-                      onClick={() => navigate("/newsingleswap")}
+                      onClick={() => navigate("/")}
                     >
                       Start a new exchange
                     </button>

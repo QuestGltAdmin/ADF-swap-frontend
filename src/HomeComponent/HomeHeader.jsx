@@ -19,13 +19,13 @@ export default function HomeHeader() {
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                   <Nav className="">
                     <Nav.Link href="https://adfswap.io">Home</Nav.Link>
-                    <Nav.Link href="/swap-simple">Swap</Nav.Link>
+                    <Nav.Link href="/">Swap</Nav.Link>
                     <Nav.Link href="/privacy">Privacy Policy</Nav.Link>
                     <Nav.Link href="/terms">Terms & Condition</Nav.Link>
 
                   </Nav>
                 </Navbar.Collapse>
-                <Link className='purple-common-btn' variant="outline-success" to="/swap-simple">Launch App</Link>
+                <Link className='purple-common-btn' variant="outline-success" to="/">Launch App</Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
               </Navbar>
             </Col>

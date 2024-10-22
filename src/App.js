@@ -22,12 +22,12 @@ function App() {
       <BrowserRouter>
           <ScrollToTop>
         <Routes>
-          <Route path="/" element={<HomeLayout><HomePage2 /></HomeLayout>} />
+          {/* <Route path="/" element={<HomeLayout><HomePage2 /></HomeLayout>} /> */}
 
           <Route path="/terms" element={<HomeLayout><Terms /></HomeLayout>} />
           <Route path="/privacy" element={<HomeLayout><Privacy /></HomeLayout>} />
           <Route path="/*" element={<Navigate to={"/"} />} />
-          <Route path="/swap-simple" element={<Layout hideWalletButton={true}><NewSingleChainSwapMainnet /></Layout>} />
+          <Route path="/" element={<Layout hideWalletButton={true}><NewSingleChainSwapMainnet /></Layout>} />
           <Route path="/exchange" element={<Layout hideWalletButton={true}><Exchange /></Layout>} />
         </Routes>
           </ScrollToTop>
