@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap-v5";
 import { ToastContainer } from "react-toastify";
-import { axiosSimpleSwap } from "../http/axios/axios_main";
+import axiosSimpleSwap from "../http/axios/axios_main";
 import QRCode from "react-qr-code";
 
 export const Exchange = () => {

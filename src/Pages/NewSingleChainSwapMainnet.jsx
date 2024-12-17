@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Form, InputGroup } from "react-bootstrap-v5";
 import { ToastContainer } from "react-toastify";
-import { axiosSimpleSwap } from "../http/axios/axios_main";
+import axiosSimpleSwap from "../http/axios/axios_main";
 import NewSwapModalSingleMainnet from "../Component/ui/NewSwapModalSingleMainnet";
 import { useNavigate } from "react-router-dom";
 
