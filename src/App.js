@@ -14,6 +14,7 @@ import HomeLayout from './HomeComponent/HomeLayout';
 import ScrollToTop from './Component/ScrollToTop';
 import { NewSingleChainSwapMainnet } from './Pages/NewSingleChainSwapMainnet';
 import { Exchange } from './Pages/Exchange';
+import { Swap } from './Pages/Swap';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/privacy" element={<HomeLayout><Privacy /></HomeLayout>} />
           <Route path="/*" element={<Navigate to={"/"} />} />
           <Route path="/" element={<Layout hideWalletButton={true}><NewSingleChainSwapMainnet /></Layout>} />
+          <Route path="/swap" element={<Layout hideWalletButton={true}><Swap /></Layout>} />
           <Route path="/exchange" element={<Layout hideWalletButton={true}><Exchange /></Layout>} />
         </Routes>
           </ScrollToTop>
