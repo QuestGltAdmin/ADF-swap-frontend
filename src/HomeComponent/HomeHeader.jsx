@@ -7,31 +7,31 @@ import { Link } from 'react-router-dom';
 
 export default function HomeHeader() {
   return (
-      <div className='home-header-new'>
-        <Container>
-          <Row>
-            <Col md={12}>
-              <Navbar  expand="lg">
-              <Navbar.Brand className="" href="https://adfswap.io">
-                          <img src="assets/img/logo.png" className='img-fluid' alt='logo' />
-                        </Navbar.Brand>
-                
-                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                  <Nav className="">
-                    {/* <Nav.Link href="https://adfswap.io">Home</Nav.Link> */}
-                    <Nav.Link href="/">Swap</Nav.Link>
-                    <Nav.Link href="/privacy">Privacy Policy</Nav.Link>
-                    <Nav.Link href="/terms">Terms & Condition</Nav.Link>
+    <div className='home-header-new'>
+      <Container>
+        <Row>
+          <Col md={12}>
+            <Navbar expand="lg">
+              <Navbar.Brand className="" href="/">
+                <img src="assets/img/logo.png" className='img-fluid' alt='logo' />
+              </Navbar.Brand>
 
-                  </Nav>
-                </Navbar.Collapse>
-                <Link className='purple-common-btn' variant="outline-success" to="/">Launch App</Link>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              </Navbar>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                <Nav className="">
+              
+                  {/* <Nav.Link href="/">Swap</Nav.Link>
+                  <Nav.Link href="/privacy">Privacy Policy</Nav.Link>
+                  <Nav.Link href="/terms">Terms & Condition</Nav.Link> */}
+
+                </Nav>
+              </Navbar.Collapse>
+              <Link className='purple-common-btn' variant="outline-success" to="/swap">Launch App</Link>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            </Navbar>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   )
 }
 

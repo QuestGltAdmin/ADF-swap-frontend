@@ -30,8 +30,8 @@ function App() {
           <Route path="/terms" element={<HomeLayout><Terms /></HomeLayout>} />
           <Route path="/privacy" element={<HomeLayout><Privacy /></HomeLayout>} />
           <Route path="/*" element={<Navigate to={"/"} />} />
-          <Route path="/" element={<Layout hideWalletButton={true}><NewSingleChainSwapMainnet /></Layout>} />
-          <Route path="/swap" element={<Layout hideWalletButton={true}><Swap /></Layout>} />
+          <Route path="/swap" element={<Layout hideWalletButton={true}><NewSingleChainSwapMainnet /></Layout>} />
+          <Route path="/swapnew" element={<Layout hideWalletButton={true}><Swap /></Layout>} />
           <Route path="/exchange" element={<Layout hideWalletButton={true}><Exchange /></Layout>} />
         </Routes>
           </ScrollToTop>

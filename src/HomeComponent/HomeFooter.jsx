@@ -23,7 +23,7 @@ export default function HomeFooter() {
         <Row>
           <Col md={4}>
             <div className="footer-content">
-              <Navbar.Brand className="" href="https://adfswap.io">
+              <Navbar.Brand className="" href="/">
                 <img
                   src="assets/img/logo.png"
                   className="img-fluid logo-img"

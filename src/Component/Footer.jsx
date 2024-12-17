@@ -12,13 +12,13 @@ export const Footer = () => {
               transaction Volume : <span>$ {((accumulatedData*1)+124000).toFixed(2)}</span>
             </p> */}
             <div className="footer-link">
-              <a href="https://twitter.com/" target="_blank">
+              <a href="https://x.com/Addfill" target="_blank">
                 <img alt="img" src="assets/img/twitter.png" />
               </a>
-              <a href="https://www.facebook.com/" target="_blank">
+              <a href="https://www.facebook.com/people/AddFill_Official/61550275840614/" target="_blank">
                 <img alt="img" src="assets/img/facebook.png" />
               </a>
-              <a href="https://discord.com/invite/" target="_blank">
+              {/* <a href="https://discord.com/invite/" target="_blank">
                 <img alt="img" src="assets/img/discord.png" />
               </a>
               <a href="https://www.youtube.com/" target="_blank">
@@ -26,7 +26,7 @@ export const Footer = () => {
               </a>
               <a href="https://t.me/joinchat" target="_blank">
                 <img alt="img" src="assets/img/telegram.png" />
-              </a>
+              </a> */}
             </div>
             <p>
               © Copyright ADF Swap 2024,{" "}

@@ -35,9 +35,9 @@ const HomePage = () => {
                     <div className="row align-items-center">
                         <div className="col-xl-5 col-lg-6  col-md-6 col-sm-7">
                             <div>
-                                <h2 className="common-heading">ADFSwap Protocol</h2>
+                                <h2 className="common-heading">ADF Swap Protocol</h2>
                                 <p className="commonpera">
-                                The ADFSwap Protocol is a public entity owned and governed by all-inclusive ADFSwap holders. Designed with simplicity, speed, affordability and security in mind, ADFSwap allows users to diversify market offerings & make increasing gains.
+                                The ADF Swap Protocol is a public entity owned and governed by all-inclusive ADF Swap holders. Designed with simplicity, speed, affordability and security in mind, ADF Swap allows users to diversify market offerings & make increasing gains.
                                 </p>
                             </div>
                         </div>
@@ -57,9 +57,9 @@ const HomePage = () => {
                     <div className="row align-items-center justify-content-center">
                         <div className="col-lg-8">
                             <div>
-                                <h2 className="common-heading text-center">How to Use ADFSwap  </h2>
+                                <h2 className="common-heading text-center">How to Use ADF Swap  </h2>
                                 <p className="commonpera text-center">
-                                Swapping is a simple process exchanging one token for another. Prices of the asset depend on the supply and demand of the assets, which is community driven. Though there are some factors like slippage and price impact that can affect your trade, hence we also provide extra features for you to control your trades. Get started with ADFSwap in 4 simple steps- </p>
+                                Swapping is a simple process exchanging one token for another. Prices of the asset depend on the supply and demand of the assets, which is community driven. Though there are some factors like slippage and price impact that can affect your trade, hence we also provide extra features for you to control your trades. Get started with ADF Swap in 4 simple steps- </p>
                             </div>
                         </div>
                     </div>
