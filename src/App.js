@@ -15,6 +15,7 @@ import ScrollToTop from './Component/ScrollToTop';
 import { NewSingleChainSwapMainnet } from './Pages/NewSingleChainSwapMainnet';
 import { Exchange } from './Pages/Exchange';
 import { Swap } from './Pages/Swap';
+import HomePage from './Pages/HomePage';
 
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
           <ScrollToTop>
         <Routes>
           {/* <Route path="/" element={<HomeLayout><HomePage2 /></HomeLayout>} /> */}
-
+         
+          <Route path="/" element={<HomeLayout><HomePage /></HomeLayout>} />
           <Route path="/terms" element={<HomeLayout><Terms /></HomeLayout>} />
           <Route path="/privacy" element={<HomeLayout><Privacy /></HomeLayout>} />
           <Route path="/*" element={<Navigate to={"/"} />} />

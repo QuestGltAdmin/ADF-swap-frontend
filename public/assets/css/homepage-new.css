@@ -1,0 +1,237 @@
+.banner-main-sec {
+    /* background-image: url(/public/assets/images/btcp-gif.gif); */
+    padding: 150px 0 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    width: 100%;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.banner-main-sec .banner-gif{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    margin: auto;
+    object-fit: cover;
+    /* transform: translate(-50%, -50%); */
+    opacity: 0.5;
+    object-position: center;
+}
+.banner-main-sec::before{
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    /* background-color: #0000009d; */
+    display: block;
+    position: absolute;
+    background-image: url(../images/gradient-banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: radial-gradient(#0000007c, #000); */
+}
+.banner-main-sec .banner-index{
+    position: relative;
+    z-index: 1;
+}
+.banner-main-sec img{
+    height: 209px;
+    width: auto;
+    margin-bottom:23px ;
+}
+.banner-main-sec h2{
+    color: #FFF;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 24px;
+}
+.banner-main-sec p{
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin: 0 auto 32px;
+    max-width: 700px;
+}
+
+.about-swap-box {
+    padding: 60px 0;
+    background-color: #000;
+    width: 100%;
+}
+.common-heading{
+    font-size: 52px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 24px;
+    color: #E07A00;
+}
+.commonpera{
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 0;
+}
+
+.pickone-box {
+    margin-top: 60px;
+    position: relative;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.pickone-box::before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 3px;
+    border-top: 3px dashed #E07A00;
+    width: 82%;
+    left: 63%;
+    top: 38px;
+}
+.pickone-box.last-box::before{
+    content: none;
+}
+.pickone-box img{
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+.pickone-box h5{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 4px;
+    color: #E07A00;
+}
+.pickone-box p{
+    color: #FFF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0;
+}
+
+@media (max-width:1600px){
+    .common-heading{
+        font-size: 48px;
+    }
+}
+@media (max-width:1200px){
+    .pickone-box h5 {
+        font-size: 18px;
+    }
+    .pickone-box p{
+        font-size: 16px;
+    }
+    .pickone-box img{
+        height: 50px;
+    }
+    .pickone-box::before {
+        top: 28px;
+    }
+    .commonpera, .banner-main-sec p{
+        font-size: 18px;
+    }
+    .common-heading {
+        font-size: 40px;
+    }
+    .banner-main-sec h2{
+        font-size: 50px;
+    }
+    .banner-main-sec img {
+        height: 180px;
+    }
+}
+@media (max-width:1023px){
+    .pickone-box::before {
+        left: 67%;
+        top: 28px;
+    }
+}
+@media (max-width: 992px) {
+    .banner-main-sec h2 {
+        font-size: 40px;
+        line-height: 50px;
+        margin-bottom: 10px;
+    }
+    .common-heading {
+        font-size: 34px;
+    }
+    .commonpera {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .commonpera {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .pickone-box p {
+        font-size: 16px;
+    }
+    .pickone-box h5 {
+        font-size: 16px;
+    }
+    .banner-main-sec {
+        min-height: 550px;
+        padding: 60px 0 30px;
+    }
+}
+@media (max-width: 768px) {
+    .banner-main-sec h2 {
+        font-size: 32px;
+        line-height: 42px;
+    }
+    .banner-main-sec p {
+        font-size: 14px;
+        line-height: 150%;
+    }
+    .common-heading {
+        font-size: 24px;
+    }
+    .pickone-box{
+        margin-bottom: 0;
+        margin-top: 42px;
+    }
+    .pickone-box::before{
+        content: none;
+    }
+    .about-swap-box {
+        padding: 45px 0;
+    }
+    .banner-main-sec img {
+        height: 120px;
+    }
+}
+
+
+@media (max-width:576px){
+    .about-swap-box .common-heading, .about-swap-box
+    .commonpera{
+        text-align: center;
+    }
+    .about-swap-box
+    .commonpera{
+        margin-bottom: 16px;
+    }
+}

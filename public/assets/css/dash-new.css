@@ -2300,6 +2300,9 @@ button {
     text-align: justify;
     line-height: 28px;
 }
+.terms-inner p a{
+    color: #E07A00 !important;
+}
 
 .terms-inner ul {
     padding-left: 20px;
