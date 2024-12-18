@@ -11,7 +11,7 @@ const HomePage = () => {
                     <div className="col-md-12">
                         <div className='banner-index'>
                             <div>
-                                <img src="/assets/images/btcp-coin.png" className='img-fluid' alt="coin" />
+                                <img src="/assets/images/adf-coin.png" className='img-fluid' alt="coin" />
                             </div>
                             <h2>Best Crypto Swap For You</h2>
                             <p>

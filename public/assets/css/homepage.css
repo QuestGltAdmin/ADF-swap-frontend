@@ -323,12 +323,6 @@
     padding: 25px;
     color: #FFFFFF;
 }
-.frequent-sec .frequent-ask-inner .accordion-button::after{
-    background-image: url(../home-img/plus.png);
-}
-.frequent-sec .frequent-ask-inner .accordion-button:not(.collapsed)::after{
-    background-image: url(../home-img/minus.png);
-}
 .home-margin{
     margin-left: 100px;
 }
