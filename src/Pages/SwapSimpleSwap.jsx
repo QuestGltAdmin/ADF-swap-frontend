@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Form, InputGroup } from "react-bootstrap-v5";
 import { ToastContainer } from "react-toastify";
@@ -7,7 +5,7 @@ import axiosSimpleSwap from "../http/axios/axios_main";
 import NewSwapModalSingleMainnet from "../Component/ui/NewSwapModalSingleMainnet";
 import { useNavigate } from "react-router-dom";
 
-export const NewSingleChainSwapMainnet = () => {
+export const SwapSimpleSwap = () => {
   const [fromTokenAmount, setFromTokenAmount] = useState(0);
   const [toTokenAmount, setToTokenAmount] = useState(0);
   const [tokenList, setTokenList] = useState([]);
@@ -123,7 +121,7 @@ export const NewSingleChainSwapMainnet = () => {
         setToTokenAmount(0);
         setFromTokenAmount(0);
         setWalletAddress("");
-        navigate(`/exchange?id=${data.id}`);
+        navigate(`/exchangesimpleswap?id=${data.id}`);
       }
       setPostExchangeErrorMessage("");
     } catch (error) {

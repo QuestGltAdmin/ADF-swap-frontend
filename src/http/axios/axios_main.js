@@ -7,4 +7,11 @@ const axiosSimpleSwap = axios.create({
   },
 });
 
+export const axiosMain = axios.create({
+  baseURL: "https://dexapi.adftechnology.com/",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 export default axiosSimpleSwap;

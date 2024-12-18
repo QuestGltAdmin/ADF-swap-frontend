@@ -78,7 +78,7 @@ const HomePage2 = () => {
                   <span className='home-bottom-border'></span></p>
                 <div className='d-flex gap-3 home-sec-btns'>
                   {/* <Button className='purple-btn-border'>White paper</Button> */}
-                  <Link className='purple-common-btn' to="/">Launch App</Link>
+                  <Link className='purple-common-btn' to="/swap">Launch App</Link>
                 </div>
               </div>
             </Col>

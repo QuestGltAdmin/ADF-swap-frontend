@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Form, InputGroup } from "react-bootstrap-v5";
 import { ToastContainer } from "react-toastify";
-import axiosSimpleSwap from "../http/axios/axios_main";
 import NewSwapModalSingleMainnet from "../Component/ui/NewSwapModalSingleMainnet";
 import { useNavigate } from "react-router-dom";
+import { axiosMain } from "../http/axios/axios_main";
 
 export const Swap = () => {
   const [fromTokenAmount, setFromTokenAmount] = useState(0);
@@ -45,9 +45,10 @@ export const Swap = () => {
 
   const fetchTokenList = async () => {
     try {
-      const { data } = await axiosSimpleSwap.get(
-        `/get_all_currencies?api_key=${process.env.REACT_APP_SINGLE_SWAP_API_KEY}`
+      const response = await axiosMain.get(
+        `/get_all_currencies?type=to`
       );
+      const data = response?.data?.message?.data;
       if (data?.length) {
         const filterData = data.filter(
           (item) => !item.isFiat && item.validation_address !== null
@@ -66,7 +67,7 @@ export const Swap = () => {
             setTokens((prevState) => ({
               ...prevState,
               to:
-                filterData.find((item) => item.symbol === "usdtbep20") ||
+                filterData.find((item) => item.symbol === "adf") ||
                 filterData[1],
             }));
           }
@@ -78,13 +79,11 @@ export const Swap = () => {
   };
 
   const fetchEstimatedExchange = async () => {
-    const params = `fixed=${true}&api_key=${
-      process.env.REACT_APP_SINGLE_SWAP_API_KEY
-    }&currency_from=${tokens.from.symbol}&currency_to=${
-      tokens.to.symbol
-    }&amount=${fromTokenAmount}`;
+    const params = `fixed=${true}&currency_from=${tokens.from.symbol}&currency_to=${tokens.to.symbol
+      }&amount=${fromTokenAmount}`;
     try {
-      const { data } = await axiosSimpleSwap.get(`/get_estimated?${params}`);
+      const response = await axiosMain.get(`/get_estimated?${params}`);
+      const data = response?.data?.message?.data;
       if (data) {
         setToTokenAmount(data);
       }
@@ -92,15 +91,14 @@ export const Swap = () => {
     } catch (error) {
       setToTokenAmount(0);
 
-      const { response } = error;
-      if (response?.data?.description) {
-        setExchangeErrorMessage(response.data.description);
+      const response = error;      
+      if (response?.response?.data?.message?.description) {
+        setExchangeErrorMessage(response?.response?.data?.message?.description);
       }
     }
   };
 
   const createExchange = async () => {
-    const params = `api_key=${process.env.REACT_APP_SINGLE_SWAP_API_KEY}`;
     const body = {
       fixed: true,
       currency_from: tokens.from.symbol,
@@ -113,10 +111,11 @@ export const Swap = () => {
     };
 
     try {
-      const { data } = await axiosSimpleSwap.post(
-        `/create_exchange?${params}`,
+      const response = await axiosMain.post(
+        `/create_exchange`,
         body
       );
+      const data = response?.data?.message?.data;
       if (data?.id) {
         setToTokenAmount(0);
         setFromTokenAmount(0);
@@ -125,12 +124,13 @@ export const Swap = () => {
       }
       setPostExchangeErrorMessage("");
     } catch (error) {
-      const { response } = error;
-      if (response?.data?.error) {
-        setPostExchangeErrorMessage(response.data.error);
+      
+      const response = error;
+      if (response?.response?.data?.message?.error) {
+        setPostExchangeErrorMessage(response?.response?.data?.message?.error);
       }
-      if (response?.data?.description) {
-        setPostExchangeErrorMessage(response.data.description);
+      if (response?.response?.data?.message?.description) {
+        setPostExchangeErrorMessage(response?.response?.data?.message?.description);
       }
     }
   };
@@ -143,11 +143,13 @@ export const Swap = () => {
     setFromTokenAmount(value);
   };
 
-  const swap = (e) => {
-    e.preventDefault();
-    setTokens((prevState) => {
-      return { from: prevState.to, to: prevState.from };
-    });
+  const switcher = (e) => {
+    if(tokens.to.symbol !== "adf"){
+      e.preventDefault();
+      setTokens((prevState) => {
+        return { from: prevState.to, to: prevState.from };
+      });
+    }
   };
 
   useEffect(() => {
@@ -277,7 +279,7 @@ export const Swap = () => {
                 </div>
 
                 <div className="swap-btn add-ico">
-                  <a onClick={swap}>
+                  <a onClick={switcher}>
                     <img src="assets/img/swithcer.svg" />
                   </a>
                 </div>
@@ -443,7 +445,7 @@ export const Swap = () => {
           }}
           tokenList={
             showSearchModal.isFrom
-              ? tokenList.filter((token) => token.symbol !== tokens.to.symbol)
+              ? tokenList.filter((token) => token.symbol !== tokens.to.symbol && token.symbol !== "adf")
               : tokenList.filter((token) => token.symbol !== tokens.from.symbol)
           }
           handleToken={handleToken}

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap-v5";
 import { ToastContainer } from "react-toastify";
-import axiosSimpleSwap from "../http/axios/axios_main";
 import QRCode from "react-qr-code";
+import { axiosMain } from "../http/axios/axios_main";
 
 export const Exchange = () => {
   const [exchangeData, setExchangeData] = useState({});
@@ -46,16 +46,17 @@ export const Exchange = () => {
   const fetchExchangeDetails = async () => {
     try {
       setIsLoading(true);
-      const params = `api_key=${process.env.REACT_APP_SINGLE_SWAP_API_KEY}&id=${id}`;
-      const { data } = await axiosSimpleSwap.get(`/get_exchange?${params}`);
+      const params = `id=${id}`;
+      const response= await axiosMain.get(`/get_exchange?${params}`);
+      const data = response?.data?.message?.data;
       if (data) {
         setExchangeData(data);
       }
       setErrorMessage("");
     } catch (error) {
-      const { response } = error;
-      if (response?.data?.description) {
-        setErrorMessage(response.data.description);
+      const response = error;
+      if (response?.response?.data?.message?.description) {
+        setErrorMessage(response?.response?.data?.message?.description);
       }
       console.log("Something went wrong with fetch exchange api");
     } finally {
@@ -162,6 +163,7 @@ export const Exchange = () => {
                         <img
                           className="img-first me-2"
                           alt="token"
+                          height={30}
                           src={
                             exchangeData.currencies?.[
                               `${exchangeData.currency_from}`
@@ -197,6 +199,7 @@ export const Exchange = () => {
                         <img
                           className="img-first me-2"
                           alt="token"
+                          height={30}
                           src={
                             exchangeData.currencies?.[
                               `${exchangeData.currency_to}`
@@ -229,7 +232,7 @@ export const Exchange = () => {
                         width: "60%",
                         margin: "40px auto 0px",
                       }}
-                      onClick={() => navigate("/")}
+                      onClick={() => navigate("/swap")}
                     >
                       Start a new exchange
                     </button>
@@ -242,6 +245,7 @@ export const Exchange = () => {
                         <img
                           className="img-first me-2"
                           alt="token"
+                          height={30}
                           src={
                             exchangeData.currencies?.[
                               `${exchangeData.currency_from}`
@@ -398,6 +402,7 @@ export const Exchange = () => {
                       <img
                         className="img-first me-2"
                         alt="token"
+                        height={30}
                         src={
                           exchangeData.currencies?.[
                             `${exchangeData.currency_to}`
@@ -527,6 +532,7 @@ export const Exchange = () => {
                           <img
                             className="img-first me-2"
                             alt="token"
+                            height={30}
                             src={
                               exchangeData.currencies?.[
                                 `${exchangeData.currency_from}`
