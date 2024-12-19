@@ -91,7 +91,7 @@ export const Swap = () => {
     } catch (error) {
       setToTokenAmount(0);
 
-      const response = error;      
+      const response = error;
       if (response?.response?.data?.message?.description) {
         setExchangeErrorMessage(response?.response?.data?.message?.description);
       }
@@ -124,7 +124,7 @@ export const Swap = () => {
       }
       setPostExchangeErrorMessage("");
     } catch (error) {
-      
+
       const response = error;
       if (response?.response?.data?.message?.error) {
         setPostExchangeErrorMessage(response?.response?.data?.message?.error);
@@ -144,7 +144,7 @@ export const Swap = () => {
   };
 
   const switcher = (e) => {
-    if(tokens.to.symbol !== "adf"){
+    if (tokens.to.symbol !== "adf") {
       e.preventDefault();
       setTokens((prevState) => {
         return { from: prevState.to, to: prevState.from };
@@ -154,7 +154,7 @@ export const Swap = () => {
 
   useEffect(() => {
     checkValidWallet();
-  }, [tokens.to]);
+  }, [tokens.to, walletAddress]);
 
   const checkValidWallet = () => {
     let regex = new RegExp(tokens.to?.validation_address);
@@ -343,10 +343,13 @@ export const Swap = () => {
                         setWalletAddress(e.target.value);
                       }}
                       value={walletAddress}
-                      onKeyUp={() => {
-                        checkValidWallet();
-                      }}
+                      // onKeyUp={() => {
+                      //   checkValidWallet();
+                      // }}
                     />
+                    <InputGroup.Text onClick={async () => { let text = await navigator.clipboard.readText(); setWalletAddress(text) }}>
+                      <i class="fa fa-clipboard text-white" aria-hidden="true"></i>
+                    </InputGroup.Text>
                     {walletAddress.length > 0 ? (
                       <InputGroup.Text>
                         {walletAddressDeCheck ? (
