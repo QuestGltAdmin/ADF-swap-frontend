@@ -142,10 +142,11 @@ export const Exchange = () => {
           <Row>
             <Col lg={6} className="m-auto">
               <div className="cross-swap-inner">
-                <div className="first-row" style={{ justifyContent: "center" }}>
+                <div className="first-row position-relative" style={{ justifyContent: "center" }}>
+                    <span className="arrow-left" onClick={()=>{navigate("/swap")}}><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
                   <div className="cross-chain-row">
                     <div>
-                      <h3>{getTitle()}</h3>
+                      <h3>{" "}{getTitle()}</h3>
                     </div>
                   </div>
                 </div>

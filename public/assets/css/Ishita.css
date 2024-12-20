@@ -321,3 +321,14 @@ margin-left:55px;
 .dashboard-white-box{
     margin: 5px;
 }
+.first-row .arrow-left{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.first-row .arrow-left i{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+}
