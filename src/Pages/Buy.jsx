@@ -59,7 +59,7 @@ export const Buy = () => {
 
   const fetchTokenList = async () => {
     try {
-      const response = await axiosMain.get(`/get_all_currencies?type=from`);
+      const response = await axiosMain.get(`/get_all_currencies?type=to`);
       const data = response?.data?.message?.data;
       if (data?.length) {
         const filterFiatData = data.filter(
