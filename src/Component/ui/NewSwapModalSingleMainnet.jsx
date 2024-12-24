@@ -97,8 +97,10 @@ export default function NewSwapModalSingleMainnet({
                         />
                         <div>
                           <h4>
-                            <span>{token.symbol?.toUpperCase()}</span> (
-                            {token.network?.toUpperCase()})
+                            <span>{token.symbol?.toUpperCase()}</span>{" "}
+                            {token.network &&
+                              `(
+                            ${token.network?.toUpperCase()})`}
                           </h4>
                           <p>{token.name}</p>
                         </div>

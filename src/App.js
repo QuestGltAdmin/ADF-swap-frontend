@@ -16,6 +16,7 @@ import { Swap } from './Pages/Swap';
 import HomePage from './Pages/HomePage';
 import { ExchangeSimpleSwap } from './Pages/ExchangeSimpleswap';
 import { SwapSimpleSwap } from './Pages/SwapSimpleSwap';
+import { Buy } from './Pages/Buy';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/privacy" element={<HomeLayout><Privacy /></HomeLayout>} />
 
             <Route path="/swap" element={<Layout hideWalletButton={true}><Swap /></Layout>} />
+            <Route path="/buy" element={<Layout hideWalletButton={true}><Buy /></Layout>} />
             <Route path="/exchange" element={<Layout hideWalletButton={true}><Exchange /></Layout>} />
 
             <Route path="/swapsimpleswap" element={<Layout hideWalletButton={true}><SwapSimpleSwap /></Layout>} />
