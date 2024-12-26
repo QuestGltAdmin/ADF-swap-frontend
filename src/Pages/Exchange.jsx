@@ -4,11 +4,13 @@ import { Col, Container, Row } from "react-bootstrap-v5";
 import { ToastContainer } from "react-toastify";
 import QRCode from "react-qr-code";
 import { axiosMain } from "../http/axios/axios_main";
+import { Modal } from "react-bootstrap";
 
 export const Exchange = () => {
   const [exchangeData, setExchangeData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -47,7 +49,7 @@ export const Exchange = () => {
     try {
       setIsLoading(true);
       const params = `id=${id}`;
-      const response= await axiosMain.get(`/get_exchange?${params}`);
+      const response = await axiosMain.get(`/get_exchange?${params}`);
       const data = response?.data?.message?.data;
       if (data) {
         setExchangeData(data);
@@ -118,6 +120,17 @@ export const Exchange = () => {
   return (
     <>
       <section>
+        <Modal centered show={isModalOpen}>
+          <Modal.Header closeButton onHide={() => setIsModalOpen(false)} />
+          <Modal.Body style={{ display: "flex", justifyContent: "center" }}>
+            <iframe
+              style={{ height: "70vh", width: "100%" }}
+              src={exchangeData?.redirect_url}
+              className="me-2"
+              rel="noopener noreferrer"
+            />
+          </Modal.Body>
+        </Modal>
         <ToastContainer />
         {isLoading && (
           <div
@@ -142,11 +155,21 @@ export const Exchange = () => {
           <Row>
             <Col lg={6} className="m-auto">
               <div className="cross-swap-inner">
-                <div className="first-row position-relative" style={{ justifyContent: "center" }}>
-                    <span className="arrow-left" onClick={()=>{navigate("/swap")}}><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                <div
+                  className="first-row position-relative"
+                  style={{ justifyContent: "center" }}
+                >
+                  <span
+                    className="arrow-left"
+                    onClick={() => {
+                      navigate("/swap");
+                    }}
+                  >
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                  </span>
                   <div className="cross-chain-row">
                     <div>
-                      <h3>{" "}{getTitle()}</h3>
+                      <h3> {getTitle()}</h3>
                     </div>
                   </div>
                 </div>
@@ -293,14 +316,9 @@ export const Exchange = () => {
                           </div>
                           <div className="exchange-detail-content-wrapper">
                             <a
-                              href={`${exchangeData.currencies?.[
-                                `${exchangeData.currency_from}`
-                              ]?.address_explorer?.slice(0, -3)}/${
-                                exchangeData.address_from
-                              }`}
                               className="me-2"
-                              target="_blank"
                               rel="noopener noreferrer"
+                              onClick={() => setIsModalOpen(true)}
                             >
                               <i
                                 style={{ color: "black" }}
