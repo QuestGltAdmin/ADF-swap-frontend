@@ -318,7 +318,18 @@ export const Exchange = () => {
                             <a
                               className="me-2"
                               rel="noopener noreferrer"
-                              onClick={() => setIsModalOpen(true)}
+                              {...(exchangeData?.redirect_url
+                                ? {
+                                    onClick: () => setIsModalOpen(true),
+                                  }
+                                : {
+                                    href: `${exchangeData.currencies?.[
+                                      `${exchangeData.currency_from}`
+                                    ]?.address_explorer?.slice(0, -3)}/${
+                                      exchangeData.address_from
+                                    }`,
+                                    target: "_blank",
+                                  })}
                             >
                               <i
                                 style={{ color: "black" }}
