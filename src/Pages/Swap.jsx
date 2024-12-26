@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Form, InputGroup } from "react-bootstrap-v5";
 import { ToastContainer } from "react-toastify";
 import NewSwapModalSingleMainnet from "../Component/ui/NewSwapModalSingleMainnet";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { axiosMain } from "../http/axios/axios_main";
+import { Tab, TabContainer, Tabs } from "react-bootstrap";
+import ExchangeTabs from "../Component/exchange-tabs";
 
 export const Swap = () => {
   const [fromTokenAmount, setFromTokenAmount] = useState(0);
@@ -45,9 +47,7 @@ export const Swap = () => {
 
   const fetchTokenList = async () => {
     try {
-      const response = await axiosMain.get(
-        `/get_all_currencies?type=to`
-      );
+      const response = await axiosMain.get(`/get_all_currencies?type=to`);
       const data = response?.data?.message?.data;
       if (data?.length) {
         const filterData = data.filter(
@@ -79,8 +79,9 @@ export const Swap = () => {
   };
 
   const fetchEstimatedExchange = async () => {
-    const params = `fixed=${true}&currency_from=${tokens.from.symbol}&currency_to=${tokens.to.symbol
-      }&amount=${fromTokenAmount}`;
+    const params = `fixed=${true}&currency_from=${
+      tokens.from.symbol
+    }&currency_to=${tokens.to.symbol}&amount=${fromTokenAmount}`;
     try {
       const response = await axiosMain.get(`/get_estimated?${params}`);
       const data = response?.data?.message?.data;
@@ -111,10 +112,7 @@ export const Swap = () => {
     };
 
     try {
-      const response = await axiosMain.post(
-        `/create_exchange`,
-        body
-      );
+      const response = await axiosMain.post(`/create_exchange`, body);
       const data = response?.data?.message?.data;
       if (data?.id) {
         setToTokenAmount(0);
@@ -124,13 +122,14 @@ export const Swap = () => {
       }
       setPostExchangeErrorMessage("");
     } catch (error) {
-
       const response = error;
       if (response?.response?.data?.message?.error) {
         setPostExchangeErrorMessage(response?.response?.data?.message?.error);
       }
       if (response?.response?.data?.message?.description) {
-        setPostExchangeErrorMessage(response?.response?.data?.message?.description);
+        setPostExchangeErrorMessage(
+          response?.response?.data?.message?.description
+        );
       }
     }
   };
@@ -226,13 +225,7 @@ export const Swap = () => {
           <Row>
             <Col lg={6} className="m-auto">
               <div className="cross-swap-inner">
-                <div className="first-row">
-                  <div className="cross-chain-row">
-                    <div>
-                      <h3>Swap</h3>
-                    </div>
-                  </div>
-                </div>
+                <ExchangeTabs />
 
                 <div className="select-one-row">
                   <div>
@@ -347,8 +340,16 @@ export const Swap = () => {
                       //   checkValidWallet();
                       // }}
                     />
-                    <InputGroup.Text onClick={async () => { let text = await navigator.clipboard.readText(); setWalletAddress(text) }}>
-                      <i class="fa fa-clipboard text-white" aria-hidden="true"></i>
+                    <InputGroup.Text
+                      onClick={async () => {
+                        let text = await navigator.clipboard.readText();
+                        setWalletAddress(text);
+                      }}
+                    >
+                      <i
+                        class="fa fa-clipboard text-white"
+                        aria-hidden="true"
+                      ></i>
                     </InputGroup.Text>
                     {walletAddress.length > 0 ? (
                       <InputGroup.Text>
@@ -448,7 +449,10 @@ export const Swap = () => {
           }}
           tokenList={
             showSearchModal.isFrom
-              ? tokenList.filter((token) => token.symbol !== tokens.to.symbol && token.symbol !== "adf")
+              ? tokenList.filter(
+                  (token) =>
+                    token.symbol !== tokens.to.symbol && token.symbol !== "adf"
+                )
               : tokenList.filter((token) => token.symbol !== tokens.from.symbol)
           }
           handleToken={handleToken}

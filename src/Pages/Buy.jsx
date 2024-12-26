@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import NewSwapModalSingleMainnet from "../Component/ui/NewSwapModalSingleMainnet";
 import { useNavigate } from "react-router-dom";
 import { axiosMain } from "../http/axios/axios_main";
+import ExchangeTabs from "../Component/exchange-tabs";
 
 const fiatCurrencyCodes = [
   "EUR",
@@ -240,13 +241,7 @@ export const Buy = () => {
           <Row>
             <Col lg={6} className="m-auto">
               <div className="cross-swap-inner">
-                <div className="first-row">
-                  <div className="cross-chain-row">
-                    <div>
-                      <h3>Buy</h3>
-                    </div>
-                  </div>
-                </div>
+                <ExchangeTabs />
 
                 <div className="select-one-row">
                   <div>
